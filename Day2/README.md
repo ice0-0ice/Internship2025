@@ -76,7 +76,7 @@ for data in dataloader:
     writer.add_images("input", imgs, step)
 
     # torch.Size([64, 6, 30, 30]) ->([**, 3, 30, 30])
-    output = torch.reshape(output, (-1, 3, 30, 30))  # -1:会根据后面的值进行调整
+    output = torch.reshape(output, (-1, 3, 30, 30))  # -1:modified by the later data
     writer.add_images("output", output, step)
     step += 1
 
@@ -96,14 +96,14 @@ dataset = torchvision.datasets.CIFAR10(root="./dataset_chen",
 dataloader = DataLoader(dataset=dataset,
                         batch_size=64)
 
-# # Max pooling cannot be applied to long integers
-# input = torch.tensor([[1,2,0,3,1],
-#                       [0,1,2,3,1],
-#                       [1,2,1,0,0],
-#                       [5,2,3,1,1],
-#                       [2,1,0,1,1]], dtype = torch.float)
-# input = torch.reshape(input,(-1,1,5,5))
-# print(input.shape)
+// Max pooling cannot be applied to long integers
+//input = torch.tensor([[1,2,0,3,1],
+//                      [0,1,2,3,1],
+//                       [1,2,1,0,0],
+//                      [5,2,3,1,1],
+//                      [2,1,0,1,1]], dtype = torch.float)
+// input = torch.reshape(input,(-1,1,5,5))
+// print(input.shape)
 
 class Chen(nn.Module):
     def __init__(self):
@@ -126,37 +126,6 @@ for data in dataloader:
     step += 1
 writer.close()
 
-# output = chen(input)
-# print(output)
+//output = chen(input)
+// print(output)
 This code demonstrates the use of a max pooling layer in a PyTorch model. The Chen class defines a simple neural network with a max pooling layer. The CIFAR-10 dataset is used for input, and TensorBoard is utilized to log the input and output images. The comments in the code provide additional context and explanations.
-
-## 5.Packages and Modules: Defining, Importing, Using, and Third-party Modules
-Modules: import statement, from ... import ....
-Creating modules: A .py file.
-Packages: A folder containing __init__.py.
-Third-party modules: e.g., requests, numpy.
-
-## 6.Classes and Objects
-Class definition: class keyword, attributes, and methods.
-Inheritance, polymorphism, encapsulation.
-Instantiating objects.
-
-## 7.Decorators
-The essence of decorators: Higher-order functions that accept functions and return new functions.
-Using the @ syntax.
-Decorators with parameters.
-
-## 8.File Operations
-Reading and writing text files: open(), read(), write().
-Context manager: with statement.
-Handling CSV and JSON files.
-
-## Git Commands
-git init - Initialize a repository
-git add . - Add to staging
-git commit -m "" - Commit changes with a message
-git remote add origin "" - Add a remote repository
-git pull --rebase origin main - Pull changes with rebase
-git push origin main - Push changes to the main branch
-git config --global user.name "" - Set global username
-git config --global user.email "" - Set global email
