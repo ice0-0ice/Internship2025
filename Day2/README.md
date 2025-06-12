@@ -88,7 +88,7 @@ from torch import nn
 from torch.nn import MaxPool2d
 from torch.utils.data import DataLoader
 from torch.utils.tensorboard import SummaryWriter
-
+#
 dataset = torchvision.datasets.CIFAR10(root="./dataset_chen",
                                        train=False,
                                        transform=torchvision.transforms.ToTensor(),
@@ -96,14 +96,15 @@ dataset = torchvision.datasets.CIFAR10(root="./dataset_chen",
 dataloader = DataLoader(dataset=dataset,
                         batch_size=64)
 
-// Max pooling cannot be applied to long integers
-//input = torch.tensor([[1,2,0,3,1],
-//                      [0,1,2,3,1],
-//                       [1,2,1,0,0],
-//                      [5,2,3,1,1],
-//                      [2,1,0,1,1]], dtype = torch.float)
-// input = torch.reshape(input,(-1,1,5,5))
-// print(input.shape)
+# # 最大池化没法对long整形进行池化
+# input = torch.tensor([[1,2,0,3,1],
+#                       [0,1,2,3,1],
+#                       [1,2,1,0,0],
+#                       [5,2,3,1,1],
+#                       [2,1,0,1,1]], dtype = torch.float)
+# input =torch.reshape(input,(-1,1,5,5))
+# print(input.shape)
+
 
 class Chen(nn.Module):
     def __init__(self):
@@ -120,12 +121,14 @@ writer = SummaryWriter("maxpool_logs")
 step = 0
 for data in dataloader:
     imgs, targets = data
-    writer.add_images("input", imgs, step)
+    writer.add_images("input",imgs,step)
     output = chen(imgs)
-    writer.add_images("output", output, step)
+    writer.add_images("ouput",output,step)
     step += 1
 writer.close()
 
-//output = chen(input)
-// print(output)
+#
+# output = chen(input)
+# print(output)
+
 This code demonstrates the use of a max pooling layer in a PyTorch model. The Chen class defines a simple neural network with a max pooling layer. The CIFAR-10 dataset is used for input, and TensorBoard is utilized to log the input and output images. The comments in the code provide additional context and explanations.
